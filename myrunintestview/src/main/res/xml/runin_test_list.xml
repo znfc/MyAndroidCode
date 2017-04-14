@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<map>
+<!-- test_item list -->
+    <boolean name = "FirstDDR" value = "true" />
+    <boolean name = "Reboot" value = "true" />
+    <boolean name = "I2C_and_PA" value = "true" />
+    <boolean name = "LCD" value = "true" />
+    <boolean name = "Video" value = "true" />
+    <boolean name = "WarmDown" value = "true" />
+    <boolean name = "Camera" value = "true" />
+    <boolean name = "EMMC" value = "true" />
+    <boolean name = "DDR" value = "true" />
+    <boolean name = "Current" value = "true" />
+    <boolean name = "PA_current" value = "true" />
+
+<!-- setting_item list -->
+    <boolean name = "setting_FirstDDR" value = "false" />
+    <boolean name = "setting_Reboot" value = "true" />
+    <boolean name = "setting_I2C_and_PA" value = "true" />
+    <boolean name = "setting_LCD" value = "true" />
+    <boolean name = "setting_Video" value = "true" />
+    <boolean name = "setting_WarmDown" value = "true" />
+    <boolean name = "setting_Camera" value = "true" />
+    <boolean name = "setting_EMMC" value = "false" />
+    <boolean name = "setting_DDR" value = "false" />
+    <boolean name = "setting_Current" value = "true" />
+    <boolean name = "setting_PA_current" value = "true" />
+</map>

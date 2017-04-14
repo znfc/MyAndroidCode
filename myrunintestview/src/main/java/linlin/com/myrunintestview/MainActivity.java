@@ -1,5 +1,9 @@
 package linlin.com.myrunintestview;
 
+import android.content.Context;
+import android.content.res.XmlResourceParser;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,13 +55,15 @@ public class MainActivity extends AppCompatActivity implements LVItemAdapter.MCa
     /**
      * 初始化数据
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void initDate() {
         isCheckMap =  new HashMap<Integer, Boolean>();
         list = new ArrayList<ItemBean>();
-        for (int i = 0 ;i <20;i++){
-            list.add(new ItemBean("reboot",true));
-            isCheckMap.put(i,false);
-        }
+//        for (int i = 0 ;i <20;i++){
+//            list.add(new ItemBean("reboot",true));
+////            isCheckMap.put(i,false);
+//        }
+        readXMLToDisplay(this);
     }
 
     @Override
@@ -64,6 +72,35 @@ public class MainActivity extends AppCompatActivity implements LVItemAdapter.MCa
                 MainActivity.this,
                 "listview的内部的按钮被点击了！，位置是-->" + v.getTag()
                 , Toast.LENGTH_SHORT).show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private  void readXMLToDisplay(Context context) {
+        try (XmlResourceParser xrp = context.getResources().getXml(R.xml.runin_test_list)) {
+            while (xrp.next() != XmlResourceParser.START_TAG) {
+                continue;
+            }
+            xrp.next();
+            while (xrp.getEventType() != XmlResourceParser.END_TAG) {
+                while (xrp.getEventType() != XmlResourceParser.START_TAG) {
+                    xrp.next();
+                }
+                if (xrp.getName().equals("boolean")) {
+                    String text = xrp.getAttributeValue(0);
+                    String isshow = xrp.getAttributeValue(1);
+
+                    list.add(new ItemBean(text,Boolean.parseBoolean(isshow)));
+                    xrp.next();
+                }
+                while (xrp.getEventType() != XmlResourceParser.END_TAG) {
+                    xrp.next();
+                }
+                xrp.next();
+            }
+        } catch (XmlPullParserException xppe) {
+        } catch (java.io.IOException ioe) {
+        }
+
     }
 
     @Override

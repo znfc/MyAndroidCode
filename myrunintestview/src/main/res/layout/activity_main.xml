@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="linlin.com.myrunintestview.MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +16,8 @@
             android:id="@+id/selectall_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="22dp"
             android:text="全选"/>
 
         <TextView
@@ -29,8 +31,11 @@
             android:id="@+id/selectnone_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp"
             android:text="全不选"/>
-    </LinearLayout>
+    </RelativeLayout>
 
 
 

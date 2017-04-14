@@ -28,6 +28,15 @@ public class LVItemAdapter extends BaseAdapter implements CompoundButton.OnCheck
         this.context = context;
         this.list = list;
         this.isCheckMap = isCheckMap;
+        initCheckMap();
+    }
+
+    //初始化复选框记录状态
+    private void initCheckMap() {
+        if(null == list) return;
+        for (int i = 0; i < list.size();i++){
+            isCheckMap.put(i,false);
+        }
     }
 
     public void setmCallback(MCallback mCallback) {
