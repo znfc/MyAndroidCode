@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements LVItemAdapter.MCa
     private Button selectNoneBtn;
     private Button startTextBtn;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
