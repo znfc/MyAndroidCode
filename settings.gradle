@@ -1,1 +1,1 @@
-include ':aidlservice', ':aidlclient', ':myrunintestview', ':myfragment'
+include ':aidlservice', ':aidlclient'
