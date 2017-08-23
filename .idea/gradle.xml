@@ -8,8 +8,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/aidlclient" />
-            <option value="$PROJECT_DIR$/aidlservice" />
             <option value="$PROJECT_DIR$/myfragment" />
             <option value="$PROJECT_DIR$/myrunintestview" />
           </set>
