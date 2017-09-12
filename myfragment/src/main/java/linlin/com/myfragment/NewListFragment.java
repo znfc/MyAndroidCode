@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +24,14 @@ public class NewListFragment extends Fragment implements AdapterView.OnItemClick
 
     public NewListFragment(){}
     public NewListFragment(FragmentManager fManager, ArrayList<Data> datas) {
+        Log.i(Tools.ZHAO11,this.getClass().getSimpleName()+" NewListFragment构造函数调用了");
         this.fManager = fManager;
         this.datas = datas;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i(Tools.ZHAO11,this.getClass().getSimpleName()+" onCreateView ");
         View view = inflater.inflate(R.layout.fg_newlist, container, false);
         list_news = (ListView) view.findViewById(R.id.list_news);
         MyAdapter myAdapter = new MyAdapter(datas, getActivity());
@@ -53,7 +56,7 @@ public class NewListFragment extends Fragment implements AdapterView.OnItemClick
         TextView txt_title = (TextView) getActivity().findViewById(R.id.txt_title);
         txt_title.setText(datas.get(position).getNew_content());
         //加上Fragment替换动画
-//        fTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit);
+        fTransaction.setCustomAnimations(R.anim.fragment_slide_left_enter, R.anim.fragment_slide_left_exit);
         fTransaction.replace(R.id.fl_content, ncFragment);
         //调用addToBackStack将Fragment添加到栈中
         fTransaction.addToBackStack(null);
