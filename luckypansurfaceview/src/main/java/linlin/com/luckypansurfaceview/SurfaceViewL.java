@@ -20,6 +20,7 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
     private SurfaceHolder mSurfaceHolder; // SurfaceHolder
     private Canvas mCanvas;// 画布
     private boolean isDrawing;// 子线程标志位
+    private Thread t; //用来执行绘制方法的子线程
 
     private Paint mPaint;// 画笔
     private Path mPath;// 路径
@@ -44,6 +45,7 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
         setFocusable(true);
         setFocusableInTouchMode(true);
         this.setKeepScreenOn(true);
+        t = new Thread(this);
 
         //画笔
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
@@ -62,7 +64,8 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
         isDrawing = true;
         Log.e("surfaceCreated", "--" + isDrawing);
         //绘制线程
-        new Thread(this).start();
+//        new Thread(this).start();
+        drawing();
     }
 
     @Override
@@ -105,6 +108,8 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
         float y = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                isDrawing = true ;//每次开始将标记设置为ture
+                t.start();//开启线程
                 mLastX = x;
                 mLastY = y;
                 mPath.moveTo(mLastX, mLastY);
@@ -119,6 +124,7 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
                 mLastY = y;
                 break;
             case MotionEvent.ACTION_UP:
+                isDrawing = false;//每次结束将标记设置为false
                 break;
         }
         return true;
