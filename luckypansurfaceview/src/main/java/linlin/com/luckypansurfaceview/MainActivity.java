@@ -12,24 +12,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        mLuckyPanView = (LuckyPanView) findViewById(R.id.id_luckypan);
-        mStartBtn =(ImageView) findViewById(R.id.id_start_btn);
-
-        mStartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!mLuckyPanView.isStart()){
-                    mStartBtn.setImageResource(R.drawable.node);
-                    mLuckyPanView.luckyStart(1);
-                }else {
-                    if(!mLuckyPanView.isShouldEnd()){
-                        mStartBtn.setImageResource(R.drawable.combat);
-                        mLuckyPanView.luckyEnd();
-                    }
-                }
-            }
-        });
+        setContentView(R.layout.surfacev);
+//        setContentView(R.layout.activity_main);
+//
+//        mLuckyPanView = (LuckyPanView) findViewById(R.id.id_luckypan);
+//        mStartBtn =(ImageView) findViewById(R.id.id_start_btn);
+//
+//        mStartBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(!mLuckyPanView.isStart()){
+//                    mStartBtn.setImageResource(R.drawable.node);
+//                    mLuckyPanView.luckyStart(1);
+//                }else {
+//                    if(!mLuckyPanView.isShouldEnd()){
+//                        mStartBtn.setImageResource(R.drawable.combat);
+//                        mLuckyPanView.luckyEnd();
+//                    }
+//                }
+//            }
+//        });
     }
 }

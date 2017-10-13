@@ -20,11 +20,14 @@ import android.view.SurfaceView;
 
 public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback ,Runnable{
 
-
+    //初始化必备变量 start
     private SurfaceHolder mSFHolder;    //定义SurfaceHolder的变量
     private Canvas mCanvas;    //与SurfaceHolder绑定的Canvas
     private Thread t;    //用于绘制的线程
     private boolean isRunning = false;    //线程的控制开关
+    //初始化必备变量 end
+
+
     //抽奖的文字
     private String[] mStrs = new String[] {"单反相机","iPad","恭喜发财","iPhone","妹子一只","恭喜发财"};
     //每个盘块的颜色
@@ -110,7 +113,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback 
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
+        Log.i(LOGTOOLS.ZHAO11,"surfaceChanged");
     }
 
     @Override
@@ -129,8 +132,8 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback 
             long end = System.currentTimeMillis();
 
             try {
-                if(end - start < 50){
-                    Thread.sleep(50 - (end - start));
+                if(end - start < 60){
+                    Thread.sleep(60 - (end - start));
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -211,7 +214,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback 
         float textWidth = mTextPaint.measureText(mStr);
         //利用水平偏移让文字居中
         float hOffset = (float)(mRadius*Math.PI / mItemCount / 2 - textWidth / 2);//水平偏移
-        float vOffset = mRadius / 2 / 6;//垂直偏移
+        float vOffset = mRadius / 2 / 6 ;//垂直偏移
         mCanvas.drawTextOnPath(mStr,path,hOffset,vOffset,mTextPaint);
         /*利用Path，添加入一个Arc，然后设置水平和垂直的偏移量，垂直偏移量就是当前Arc朝着圆心移动的距离；水平偏移量，
         就是顺时针去旋转，我们偏移了 (mRadius * Math.PI / mItemCount / 2 - textWidth / 2);目的是为了文字居中。
@@ -222,7 +225,7 @@ public class LuckyPanView extends SurfaceView implements SurfaceHolder.Callback 
     //根据当前旋转的mStartAngle计算当前滚动到的区域 绘制背景，不重要，完全为了美观
     private void drawBg(){
 
-        mCanvas.drawColor(0xFFFFFFFF);
+//        mCanvas.drawColor(0xFFFFFFFF);
         mCanvas.drawBitmap(mBgBitmap,null,new Rect(mPadding/2 , mPadding/2,
                 getMeasuredWidth() - mPadding/2,getMeasuredWidth() - mPadding/2),null);
     }
