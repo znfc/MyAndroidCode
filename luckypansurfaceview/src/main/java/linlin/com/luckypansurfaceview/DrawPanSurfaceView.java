@@ -15,6 +15,14 @@ import android.view.SurfaceView;
  * Created by zhaopenglin on 2017/10/13.
  */
 
+ /**
+  * SurfaceView使用步骤和自定义View非常相似。
+  * 1、不同的是现在是继承自SurfaceView
+  * 2、在初始化的时候，拿到SurfaceHolder，给SurfaceHolder设置Callback
+  * 3、在Callback 中去写几个回调方法surfaceCreated,surfaceChanged,surfaceDestroyed。
+  * 4、在surfaceCreated中起一个线程，在线程中使用拿到的SurfaceHolder去锁定Canvas进行绘图。
+  * 5、在surfaceDestroyed中结束这个绘图线程。
+  */
 public class DrawPanSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
     private SurfaceHolder mSurfaceHolder; // SurfaceHolder
