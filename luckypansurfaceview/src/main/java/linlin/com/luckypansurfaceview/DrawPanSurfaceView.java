@@ -15,7 +15,7 @@ import android.view.SurfaceView;
  * Created by zhaopenglin on 2017/10/13.
  */
 
-public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+public class DrawPanSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
     private SurfaceHolder mSurfaceHolder; // SurfaceHolder
     private Canvas mCanvas;// 画布
@@ -26,11 +26,11 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
     private Path mPath;// 路径
     private float mLastX, mLastY;//上次的坐标
 
-    public SurfaceViewL(Context context) {
+    public DrawPanSurfaceView(Context context) {
         this(context, null);
     }
 
-    public SurfaceViewL(Context context, AttributeSet attrs) {
+    public DrawPanSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
@@ -120,6 +120,7 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
                 if (dx >= 3 || dy >= 3) {
                     mPath.quadTo(mLastX, mLastY, (mLastX + x) / 2, (mLastY + y) / 2);
                 }
+//                mPath.lineTo(x, y);
                 mLastX = x;
                 mLastY = y;
                 break;
@@ -130,22 +131,22 @@ public class SurfaceViewL extends SurfaceView implements SurfaceHolder.Callback,
         return true;
     }
 
-    /**
-     * 测量
-     */
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int wSpecMode = MeasureSpec.getMode(widthMeasureSpec);
-        int wSpecSize = MeasureSpec.getSize(widthMeasureSpec);
-        int hSpecMode = MeasureSpec.getMode(heightMeasureSpec);
-        int hSpecSize = MeasureSpec.getSize(heightMeasureSpec);
-        if (wSpecMode == MeasureSpec.AT_MOST && hSpecMode == MeasureSpec.AT_MOST) {
-            setMeasuredDimension(300, 300);
-        } else if (wSpecMode == MeasureSpec.AT_MOST) {
-            setMeasuredDimension(300, hSpecSize);
-        } else if (hSpecMode == MeasureSpec.AT_MOST) {
-            setMeasuredDimension(wSpecSize, 300);
-        }
-    }
+//    /**
+//     * 测量
+//     */
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        int wSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+//        int wSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+//        int hSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+//        int hSpecSize = MeasureSpec.getSize(heightMeasureSpec);
+//        if (wSpecMode == MeasureSpec.AT_MOST && hSpecMode == MeasureSpec.AT_MOST) {
+//            setMeasuredDimension(300, 300);
+//        } else if (wSpecMode == MeasureSpec.AT_MOST) {
+//            setMeasuredDimension(300, hSpecSize);
+//        } else if (hSpecMode == MeasureSpec.AT_MOST) {
+//            setMeasuredDimension(wSpecSize, 300);
+//        }
+//    }
 }
